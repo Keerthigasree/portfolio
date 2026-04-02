@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Keerthiga Sree P — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #F9F7F3;
+    --ink: #1A1916;
+    --muted: #7A7870;
+    --accent: #3D5A4C;
+    --accent-light: #EAF0EC;
+    --border: #E4E1D9;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem;
+    background: rgba(249,247,243,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 8rem 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-line {
+    position: absolute; top: 0; right: 3rem;
+    width: 1px; height: 100%;
+    background: var(--border);
+  }
+  .hero-year {
+    font-size: 11px; letter-spacing: 0.15em; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 2rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    max-width: 800px;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .hero-desc { max-width: 420px; color: var(--muted); font-size: 14px; font-weight: 300; }
+  .hero-meta { text-align: right; }
+  .hero-meta p { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+  .hero-meta a { color: var(--accent); text-decoration: none; }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase;
+  }
+  .hero-scroll span { width: 1px; height: 40px; background: var(--border); display: block; animation: scrollLine 1.8s ease-in-out infinite; }
+  @keyframes scrollLine { 0%,100%{opacity:0.3;transform:scaleY(0.5)} 50%{opacity:1;transform:scaleY(1)} }
+
+  /* SECTIONS */
+  section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 3rem;
+  }
+  .section-tag {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400;
+  }
+  .section-num { font-size: 11px; color: var(--border); font-weight: 300; }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 14px; color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .edu-stack { display: flex; flex-direction: column; gap: 0; }
+  .edu-item {
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+  .edu-item:last-child { border-bottom: 1px solid var(--border); }
+  .edu-school { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .edu-degree { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .edu-year { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .edu-score {
+    font-size: 11px; color: var(--accent); background: var(--accent-light);
+    padding: 2px 8px; border-radius: 99px; font-weight: 500;
+    display: inline-block; margin-top: 4px; grid-column: 1 / -1;
+  }
+
+  /* PROJECTS */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+  .proj-card {
+    background: var(--cream);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .proj-card:hover { background: var(--white); }
+  .proj-number { font-size: 11px; color: var(--border); font-weight: 300; margin-bottom: 1.5rem; }
+  .proj-tag {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 0.7rem;
+  }
+  .proj-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 0.6rem; }
+  .proj-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  /* SKILLS */
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .skills-block h4 {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400; margin-bottom: 1.5rem;
+  }
+  .skill-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .skill-label { font-size: 13px; color: var(--ink); min-width: 120px; font-weight: 400; }
+  .skill-track { flex: 1; height: 1px; background: var(--border); position: relative; }
+  .skill-fill { position: absolute; top: 0; left: 0; height: 1px; background: var(--accent); }
+  .skill-dot {
+    position: absolute; top: 50%; right: 0;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); transform: translateY(-50%);
+  }
+  .skill-val { font-size: 12px; color: var(--muted); min-width: 30px; text-align: right; }
+  .tools-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-tag {
+    font-size: 12px; color: var(--ink);
+    border: 1px solid var(--border);
+    padding: 5px 14px; border-radius: 99px;
+    background: var(--white); font-weight: 400;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .tool-tag:hover { border-color: var(--accent); background: var(--accent-light); }
+
+  /* ACHIEVEMENTS */
+  .ach-grid { display: flex; flex-direction: column; gap: 0; }
+  .ach-row {
+    display: grid; grid-template-columns: 2.5rem 1fr auto;
+    align-items: center; gap: 1.5rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .ach-row:last-child { border-bottom: 1px solid var(--border); }
+  .ach-icon-box {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .ach-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .ach-detail { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 300; }
+  .ach-year { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* CONTACT */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-intro p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--ink); text-decoration: none;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: var(--accent-light); }
+  .cl-icon { font-size: 14px; width: 20px; text-align: center; }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-field { display: flex; flex-direction: column; gap: 5px; }
+  .form-field label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .form-field input, .form-field textarea {
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 10px 14px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--white); color: var(--ink);
+    outline: none; resize: none;
+    transition: border-color 0.2s;
+    font-weight: 300;
+  }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+  .form-field textarea { height: 100px; }
+  .btn-send {
+    padding: 11px 28px; background: var(--accent); color: var(--white);
+    border: none; border-radius: 8px; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.04em; align-self: flex-start;
+    transition: opacity 0.2s;
+  }
+  .btn-send:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 12px; color: var(--muted); font-weight: 300; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .about-grid, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .proj-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .hero-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">KS</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-line"></div>
+  <p class="hero-year">B.Tech IT · Expected 2026</p>
+  <h1 class="hero-name">Keerthiga<br>Sree <em>P.</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Developer & designer passionate about building real-world solutions through programming, web development, and AI/ML innovation.</p>
+    <div class="hero-meta">
+      <p>📍 Dharmapuri, India</p>
+      <p><a href="mailto:keerthigasree2121@gmail.com">keerthigasree2121@gmail.com</a></p>
+      <p><a href="https://github.com/Keerthigasree" target="_blank">github.com/Keerthigasree</a></p>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll <span></span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-tag">About</span>
+    <span class="section-num">01</span>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <h2 class="section-title">Building with<br>purpose.</h2>
+      <p>I'm a final-year B.Tech Information Technology student at <strong>Sri Ramakrishna Engineering College, Coimbatore</strong>. I'm driven by a passion for programming, web development, and AI/ML applications.</p>
+      <p>From building a Fake News Detection system to interning at <strong>Emglitz Technologies</strong>, I actively seek opportunities to apply classroom learning to real-world challenges. I also volunteer with NSS and stay grounded through yoga.</p>
+    </div>
+    <div>
+      <div class="edu-stack">
+        <div class="edu-item">
+          <div>
+            <div class="edu-school">Sri Ramakrishna Engineering College</div>
+            <div class="edu-degree">B.Tech Information Technology</div>
+            <span class="edu-score">CGPA: 7.12</span>
+          </div>
+          <div class="edu-year">2022 – 2026</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-school">Sri Vijay Vidyalaya MHSS</div>
+            <div class="edu-degree">Higher Secondary (Class 12)</div>
+            <span class="edu-score">66.8%</span>
+          </div>
+          <div class="edu-year">2022</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-school">Sri Vijay Vidyalaya MHSS</div>
+            <div class="edu-degree">SSLC (Class 10)</div>
+            <span class="edu-score">82.4%</span>
+          </div>
+          <div class="edu-year">2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-tag">Projects</span>
+    <span class="section-num">02</span>
+  </div>
+  <div class="proj-grid fade-in">
+    <div class="proj-card">
+      <div class="proj-number">01</div>
+      <div class="proj-tag">Machine Learning</div>
+      <div class="proj-title">Fake News Detection</div>
+      <div class="proj-desc">An ML-based system that detects fake news from article headlines or images using classification models.</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-number">02</div>
+      <div class="proj-tag">Software</div>
+      <div class="proj-title">Supermarket Billing System</div>
+      <div class="proj-desc">Automated checkout and billing system to improve accuracy and speed at supermarket counters.</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-number">03</div>
+      <div class="proj-tag">AI · In Progress</div>
+      <div class="proj-title">Automated Grading System</div>
+      <div class="proj-desc">An AI-driven grading tool for efficient and accurate evaluation of student submissions.</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-number">04</div>
+      <div class="proj-tag">Internship</div>
+      <div class="proj-title">Web Development Intern</div>
+      <div class="proj-desc">Worked at Emglitz Technologies, Coimbatore on live web development projects. June – July 2024.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-tag">Skills</span>
+    <span class="section-num">03</span>
+  </div>
+  <div class="skills-layout fade-in">
+    <div class="skills-block">
+      <h4>Programming & Tech</h4>
+      <div class="skill-row">
+        <span class="skill-label">C</span>
+        <div class="skill-track"><div class="skill-fill" style="width:80%"></div><div class="skill-dot" style="left:80%"></div></div>
+        <span class="skill-val">80%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">Java</span>
+        <div class="skill-track"><div class="skill-fill" style="width:72%"></div><div class="skill-dot" style="left:72%"></div></div>
+        <span class="skill-val">72%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">HTML / CSS</span>
+        <div class="skill-track"><div class="skill-fill" style="width:78%"></div><div class="skill-dot" style="left:78%"></div></div>
+        <span class="skill-val">78%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">SQL</span>
+        <div class="skill-track"><div class="skill-fill" style="width:70%"></div><div class="skill-dot" style="left:70%"></div></div>
+        <span class="skill-val">70%</span>
+      </div>
+    </div>
+    <div class="skills-block">
+      <h4>Tools & Soft Skills</h4>
+      <div class="tools-list">
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Canva</span>
+        <span class="tool-tag">Machine Learning</span>
+        <span class="tool-tag">Web Development</span>
+        <span class="tool-tag">Database Management</span>
+        <span class="tool-tag">Problem Solving</span>
+        <span class="tool-tag">Teamwork</span>
+        <span class="tool-tag">Communication</span>
+        <span class="tool-tag">NSS Volunteer</span>
+        <span class="tool-tag">Continuous Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <span class="section-tag">Achievements</span>
+    <span class="section-num">04</span>
+  </div>
+  <div class="ach-grid fade-in">
+    <div class="ach-row">
+      <div class="ach-icon-box">🏆</div>
+      <div>
+        <div class="ach-name">Smart India Hackathon 2023</div>
+        <div class="ach-detail">Participated at the internal level of the prestigious national competition.</div>
+      </div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-row">
+      <div class="ach-icon-box">🥈</div>
+      <div>
+        <div class="ach-name">Design Contest — Runner-up</div>
+        <div class="ach-detail">Achieved runner-up position during National Science Day design contest.</div>
+      </div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-row">
+      <div class="ach-icon-box">💡</div>
+      <div>
+        <div class="ach-name">E BOX Certification</div>
+        <div class="ach-detail">Mastering problem solving with C — completed the E BOX programming challenge.</div>
+      </div>
+      <div class="ach-year">2023</div>
+    </div>
+    <div class="ach-row">
+      <div class="ach-icon-box">🤝</div>
+      <div>
+        <div class="ach-name">NSS Volunteer & Yoga Club</div>
+        <div class="ach-detail">Active contributor to social service and wellness activities on campus.</div>
+      </div>
+      <div class="ach-year">Ongoing</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">Contact</span>
+    <span class="section-num">05</span>
+  </div>
+  <div class="contact-layout fade-in">
+    <div class="contact-intro">
+      <h2 class="section-title">Let's work<br>together.</h2>
+      <p>Open to internships, collaborations, and entry-level opportunities. I'd love to hear from you — feel free to reach out through any channel below.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:keerthigasree2121@gmail.com">
+          <span class="cl-icon">✉</span> keerthigasree2121@gmail.com
+        </a>
+        <a class="contact-link" href="tel:+918778195271">
+          <span class="cl-icon">📞</span> +91 87781 95271
+        </a>
+        <a class="contact-link" href="https://github.com/Keerthigasree" target="_blank">
+          <span class="cl-icon">⌥</span> github.com/Keerthigasree
+        </a>
+        <a class="contact-link" href="#">
+          <span class="cl-icon">in</span> LinkedIn: Keerthiga Sree P
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-field">
+        <label>Your name</label>
+        <input type="text" placeholder="Jane Doe" />
+      </div>
+      <div class="form-field">
+        <label>Your email</label>
+        <input type="email" placeholder="jane@example.com" />
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea placeholder="Hi Keerthiga, I'd love to connect about..."></textarea>
+      </div>
+      <button class="btn-send">Send message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Keerthiga Sree P. All rights reserved.</p>
+  <p>Designed & built with care · <a href="mailto:keerthigasree2121@gmail.com">Get in touch</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
